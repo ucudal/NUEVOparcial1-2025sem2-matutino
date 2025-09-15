@@ -34,7 +34,27 @@ const biblioteca = { ...bibliotecaData };
  * @return {boolean|string} - true si se realizó el préstamo, mensaje de error si no
  */
 function prestarLibro(idLibro, idEstudiante, fechaPrestamo) {
-  // Tu código aquí
+  let libro = biblioteca.libros.find(libro => libro.id == id);
+  let estudiante = biblioteca.estudiantes.find(estudiante => estudiante.id == id);
+  let hayLibro = estudiante.librosActuales.length;
+  if(idLibro > biblioteca.libros.length || idEstudiante > biblioteca.estudiantes.length || fechaPrestamo!==Date.now){
+    console.log("Ingrese datos válidos")
+  }else{
+    if(libro.disponible === false){
+      console.log("El libro está siendo utilizado por otro estudiante");
+    } else{
+      if(hayLibro===0){
+        estudiante.librosActuales.push(1);
+      }else{
+        let cantLibros = estudiante.librosActuales.pop();
+        estudiante.librosActuales.push(cantLibros+1);
+      }
+      libro.prestamos.push({"estudiante": estudiante.nombre, "fechaPrestamo":fechaPrestamo, "fechaDevolucion": null});
+      libro.disponible=false;
+      console.log("El libro es tuyo!Procura devolverlo en 3 meses y cuidarlo")
+    }
+  }
+  
 }
 
 
@@ -50,16 +70,34 @@ function prestarLibro(idLibro, idEstudiante, fechaPrestamo) {
 function buscarLibros(criterios) {
   // Tu código aquí
   // Ejemplo de criterios: {titulo: "javascript", disponible: true}
+  let criterio = criterios.key;
+  switch(criterio){
+    case "titulo":
+      break;
+    case "autor":
+      break;
+    case "categoria":
+      break;
+    case "disponibilidad":
+      break;
+    case null:
+      for(let i = 0; i < biblioteca.libros.length-1; i++){
+        let libro = biblioteca.libros.find(libro => libro.id == i);
+        if(libro.disponible === criterios.disponible){
+          console.log(libro);
+        }
+      }
+  }
 }
 
 
 // ALGUNOS CASOS DE PRUEBA
 // Descomentar para probar tu implementación
 
-/*
+
 console.log("Probando préstamo de libro:");
 console.log(prestarLibro(1, 3, "2025-09-13"));
-
+/*
 console.log("\nBuscando libros de programación disponibles:");
 console.log(buscarLibros({categoria: "Programación", disponible: true}));
 

@@ -4,3 +4,65 @@
   font-weight: 700;
   font-style: normal;
 }
+
+body{
+   font-family: 'Rufina';
+  src: url('./assets/fonts/Rufina-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+#todo{
+  width: 700px;
+}
+
+#encabezado{
+  color: rgb(205, 2, 2);
+  display:flex;
+  background-color: rgb(240, 228, 2);
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#titulo{
+  display: block;
+  margin: 20px;
+  padding: 10px;
+}
+
+#pagina{
+  text-align: center;
+}
+#entradas, #platoPrincipal, #postres{
+  display:flex;
+  position: relative;
+  justify-content: space-between;
+
+}
+#menu1, #menu3{
+  text-align: end;
+  
+}
+#menu2{
+  text-align: start;
+}
+p{
+  font-size: 10px;
+}
+.precio{
+  font-size: 20px;
+}
+
+img{
+  width: 300px;
+  height: auto;
+}
+
+#plato{
+  margin: 0px;
+  padding: 0px;
+}
+
+.subt{
+  font-size: 35px;
+}
